@@ -28,7 +28,7 @@ public class UserJsonTest {
 
     @Test
     public void testSerialize() throws Exception {
-        final String expected = "{\"id\":null,\"username\":\"test\",\"password\":\"UxViU7towYwsi5G3zZlzNS3Gkbg=\",\"email\":\"test@test\",\"firstName\":\"test\",\"lastName\":\"test\",\"active\":true,\"roles\":[{\"id\":null,\"authority\":\"TEST_ROLE\"}],\"enabled\":true,\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true}";
+        final String expected = "{\"@class\":\"UserJpaImpl\",\"username\":\"test\",\"password\":\"UxViU7towYwsi5G3zZlzNS3Gkbg=\",\"email\":\"test@test\",\"firstName\":\"test\",\"lastName\":\"test\",\"active\":true,\"roles\":[{\"authority\":\"TEST_ROLE\"}],\"enabled\":true,\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true}";
         Hash hash = new Hash(Hash.SHA1_TYPE);
         Role role = new RoleJpaImpl("TEST_ROLE");
         Account account = new AccountJpaImpl();
