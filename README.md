@@ -6,3 +6,5 @@ interface package - simple-user-account. Currently, the only implementation defi
 case the application should be booted with the active profile - 'jpa'
 
 e.g. -Dspring.profiles.active=jpa
+
+The build includes the spring-boot plugin. Run the API by executing the spring-boot:run goal.
