@@ -1,18 +1,12 @@
 package com.johnhunsley.user.api;
 
+import com.johnhunsley.user.domain.Page;
 import com.johnhunsley.user.domain.User;
 import com.johnhunsley.user.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import java.lang.Long;
-import java.lang.String;
-import java.util.Collection;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -36,6 +30,7 @@ import java.util.Collection;
  *         Date : 02/12/2016
  *         Time : 19:01
  */
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/user")
 public class UserRestController {
@@ -60,7 +55,7 @@ public class UserRestController {
     }
 
     @RequestMapping(value = "/page/{pageSize}/{pageNumber}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<Collection<User>> pageAllUsers(@PathVariable(name = "pageSize") final int pageSize,
+    public ResponseEntity<Page<User>> pageAllUsers(@PathVariable(name = "pageSize") final int pageSize,
                                             @PathVariable(name = "pageNumber") final int pageNumber) {
         return new ResponseEntity<>(userDetailsService.pageAllUser(pageSize, pageNumber), HttpStatus.OK);
     }

@@ -1,7 +1,7 @@
 package com.johnhunsley.user.api;
 
-import com.johnhunsley.user.domain.*;
-import com.johnhunsley.user.jpa.util.TestUtils;
+import com.johnhunsley.user.TestUtils;
+import com.johnhunsley.user.domain.User;
 import com.johnhunsley.user.service.UserDetailsServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +10,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import java.lang.Exception;
+
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.anyString;

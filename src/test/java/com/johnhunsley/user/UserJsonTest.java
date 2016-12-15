@@ -1,19 +1,12 @@
 package com.johnhunsley.user;
 
-import com.johnhunsley.user.domain.*;
-import com.johnhunsley.user.jpa.domain.AccountJpaImpl;
-import com.johnhunsley.user.jpa.domain.RoleJpaImpl;
-import com.johnhunsley.user.jpa.domain.UserJpaImpl;
-import com.johnhunsley.user.jpa.util.*;
+import com.johnhunsley.user.domain.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
-import org.springframework.data.util.ReflectionUtils;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.lang.reflect.Field;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -47,7 +40,7 @@ public class UserJsonTest {
 
     @Test
     public void testSerialize() throws Exception {
-        final String expected = "{\"@class\":\"UserJpaImpl\",\"id\":100,\"username\":\"test\",\"password\":\"UxViU7towYwsi5G3zZlzNS3Gkbg=\",\"email\":\"test@test\",\"firstName\":\"test\",\"lastName\":\"test\",\"active\":true,\"roles\":[{\"authority\":\"TEST_ROLE\"}],\"enabled\":true,\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true}";
+        final String expected = "{\"@class\":\"User\",\"id\":100,\"username\":\"test\",\"password\":\"UxViU7towYwsi5G3zZlzNS3Gkbg=\",\"email\":\"test@test\",\"firstName\":\"test\",\"lastName\":\"test\",\"active\":true,\"roles\":[{\"authority\":\"TEST_ROLE\"}],\"enabled\":true,\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true}";
         User user = TestUtils.user();
         System.out.println(tester.write(user).getJson());
         assertThat(tester.write(user)).isEqualToJson(expected);
