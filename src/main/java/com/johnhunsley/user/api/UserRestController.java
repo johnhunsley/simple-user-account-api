@@ -59,4 +59,12 @@ public class UserRestController {
                                             @PathVariable(name = "pageNumber") final int pageNumber) {
         return new ResponseEntity<>(userDetailsService.pageAllUser(pageSize, pageNumber), HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @RequestMapping(value = "/search/{pageSize}/{pageNumber}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<Page<User>> searchAllUsers(@RequestParam(name = "query") final String query,
+                                                    @PathVariable(name = "pageSize") final int pageSize,
+                                                    @PathVariable(name = "pageNumber") final int pageNumber) {
+        return new ResponseEntity<>(userDetailsService.searchAllUsers(query, pageSize, pageNumber), HttpStatus.OK);
+    }
 }
