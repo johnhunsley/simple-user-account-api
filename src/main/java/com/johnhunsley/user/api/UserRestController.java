@@ -38,22 +38,26 @@ public class UserRestController {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
     public ResponseEntity saveUser(@RequestBody User user) {
         userDetailsService.saveUser(user);
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/username/{username}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<User> getUserByUsername(@PathVariable(name = "username") final String username) {
         return new ResponseEntity<>(userDetailsService.getUserByUsername(username), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<User> getUserById(@PathVariable(name = "id") final Long id) {
         return new ResponseEntity<>(userDetailsService.getById(id), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/page/{pageSize}/{pageNumber}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<Page<User>> pageAllUsers(@PathVariable(name = "pageSize") final int pageSize,
                                             @PathVariable(name = "pageNumber") final int pageNumber) {
