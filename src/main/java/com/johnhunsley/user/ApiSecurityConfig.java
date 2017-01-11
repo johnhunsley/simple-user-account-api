@@ -8,6 +8,7 @@ import com.svlada.security.auth.jwt.JwtAuthenticationProvider;
 import com.svlada.security.auth.jwt.JwtTokenAuthenticationProcessingFilter;
 import com.svlada.security.auth.jwt.SkipPathRequestMatcher;
 import com.svlada.security.auth.jwt.extractor.TokenExtractor;
+import com.svlada.security.crypto.password.StandardPasswordBase64Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -53,8 +54,8 @@ import java.util.List;
 @ComponentScan({"com.svlada","com.johnhunsley.user"})
 @EnableWebSecurity
 public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
-    public static final String FORM_BASED_LOGIN_ENTRY_POINT = "/auth/login";
-    public static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/**";
+    public static final String FORM_BASED_LOGIN_ENTRY_POINT = "/auth/login/";
+    public static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/user/**";
     public static final String TOKEN_REFRESH_ENTRY_POINT = "/auth/token";
 
     @Autowired private UserDetailsService userDetailsService;
@@ -80,6 +81,11 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
                 = new JwtTokenAuthenticationProcessingFilter(failureHandler, tokenExtractor, matcher);
         filter.setAuthenticationManager(this.authenticationManager);
         return filter;
+    }
+
+    @Bean
+    protected StandardPasswordBase64Encoder passwordEncoder() {
+        return new StandardPasswordBase64Encoder();
     }
 
     @Bean
