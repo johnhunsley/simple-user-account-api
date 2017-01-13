@@ -54,7 +54,7 @@ import java.util.List;
 @ComponentScan({"com.svlada","com.johnhunsley.user"})
 @EnableWebSecurity
 public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
-    public static final String FORM_BASED_LOGIN_ENTRY_POINT = "/auth/login/";
+    public static final String FORM_BASED_LOGIN_ENTRY_POINT = "/auth/login";
     public static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/user/**";
     public static final String TOKEN_REFRESH_ENTRY_POINT = "/auth/token";
 
@@ -107,7 +107,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests().anyRequest().permitAll();//.authenticated();
+//        http.authorizeRequests().anyRequest().permitAll();
         http
         .csrf().disable() // We don't need CSRF for JWT based authentication
                 .exceptionHandling()
@@ -118,7 +118,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
         .and()
-                .authorizeRequests()
+           .authorizeRequests()
         .antMatchers(FORM_BASED_LOGIN_ENTRY_POINT).permitAll() // Login end-point
         .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll() // Token refresh end-point
 
