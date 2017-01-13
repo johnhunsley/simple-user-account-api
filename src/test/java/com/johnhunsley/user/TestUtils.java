@@ -1,9 +1,13 @@
 package com.johnhunsley.user;
 
-import com.johnhunsley.user.domain.*;
+import com.johnhunsley.user.domain.Account;
+import com.johnhunsley.user.domain.Role;
+import com.johnhunsley.user.domain.User;
+import com.johnhunsley.user.domain.YNEnum;
 import com.johnhunsley.user.jpa.domain.AccountJpaImpl;
 import com.johnhunsley.user.jpa.domain.RoleJpaImpl;
 import com.johnhunsley.user.jpa.domain.UserJpaImpl;
+import com.svlada.security.crypto.password.Hash;
 import org.springframework.data.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
@@ -37,7 +41,7 @@ public class TestUtils {
         Hash hash = new Hash(Hash.SHA1_TYPE);
         Role role = new RoleJpaImpl("TEST_ROLE");
         Account account = new AccountJpaImpl();
-        User user = new UserJpaImpl("test", "test@test", "test", "test", YNEnum.Y, hash.hash("passwordTest"));
+        User user = new UserJpaImpl("test", "test@test", "test", "test", YNEnum.Y, hash.hash("password"));
 
         //Set the id a-la-jpa style
         Field field = ReflectionUtils.findField(UserJpaImpl.class, new ReflectionUtils.DescribedFieldFilter() {

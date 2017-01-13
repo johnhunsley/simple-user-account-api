@@ -52,7 +52,7 @@ public class UserRestControllerTest {
 
     @Test
     public void testGetUser() throws Exception {
-        final String expected = "{\"@class\":\"User\",\"id\":100,\"username\":\"test\",\"password\":\"UxViU7towYwsi5G3zZlzNS3Gkbg=\",\"email\":\"test@test\",\"firstName\":\"test\",\"lastName\":\"test\",\"active\":true,\"roles\":[{\"authority\":\"TEST_ROLE\"}],\"enabled\":true,\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true}";
+        final String expected = "{\"@class\":\"User\",\"id\":100,\"username\":\"test\",\"password\":\"W6ph5Mm5Pz8GgiULbPgzG37mj9g=\",\"email\":\"test@test\",\"firstName\":\"test\",\"lastName\":\"test\",\"active\":true,\"roles\":[{\"authority\":\"TEST_ROLE\"}],\"enabled\":true,\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true}";
         User user = TestUtils.user();
         given(userDetailsService.getUserByUsername(anyString())).willReturn(user);
         given(userDetailsService.getById(anyLong())).willReturn(user);
@@ -71,7 +71,7 @@ public class UserRestControllerTest {
 
     @Test
     public void testWriteUser() throws Exception {
-        final String json = "{\"@class\":\"User\",\"username\":\"test\",\"password\":\"UxViU7towYwsi5G3zZlzNS3Gkbg=\",\"email\":\"test@test\",\"firstName\":\"test\",\"lastName\":\"test\",\"active\":true,\"roles\":[{\"authority\":\"TEST_ROLE\"}],\"enabled\":true,\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true}";
+        final String json = "{\"@class\":\"User\",\"username\":\"test\",\"password\":\"W6ph5Mm5Pz8GgiULbPgzG37mj9g=\",\"email\":\"test@test\",\"firstName\":\"test\",\"lastName\":\"test\",\"active\":true,\"roles\":[{\"authority\":\"TEST_ROLE\"}],\"enabled\":true,\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true}";
         mockMvc.perform(put("/user").content(json).contentType("application/json")).andExpect(status().isOk());
 
     }
