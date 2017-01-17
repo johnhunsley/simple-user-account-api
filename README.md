@@ -1,4 +1,6 @@
 # simple-user-account-api
+[![Circle CI](https://circleci.com/gh/johnhunsley/simple-user-account-api.svg?style=svg)](https://circleci.com/gh/johnhunsley/simple-user-account-api)
+
 MVC REST controllers for the simple-user-account package which are intended for use with a Javascript front end
 
 The API is secured with JWT implemented in Spring Security using a fork of Vladimir Stankovic's example -
@@ -12,3 +14,7 @@ case the application should be booted with the active profile - 'jpa'
 e.g. -Dspring.profiles.active=jpa
 
 The build includes the spring-boot plugin. Run the API by executing the spring-boot:run goal.
+
+Latest Version -
+
+[![](https://jitpack.io/v/johnhunsley/simple-user-account-api.svg)](https://jitpack.io/#johnhunsley/simple-user-account-api)
