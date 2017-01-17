@@ -12,7 +12,7 @@
 
     <groupId>com.johnhunsley.user</groupId>
     <artifactId>simple-user-account-api</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <dependencies>
 
@@ -28,12 +28,12 @@
             <version>6.0.4</version>
             <!--<scope>Provided</scope>-->
         </dependency>
-       
-		<dependency>
-            <groupId>com.johnhunsley.user</groupId>
+
+        <dependency>
+            <groupId>com.github.johnhunsley</groupId>
             <artifactId>simple-user-account-jpa</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>	       
+            <version>1.0</version>
+        </dependency>
 
         <dependency>
             <groupId>log4j</groupId>
@@ -45,7 +45,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
-        </dependency>       
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -93,6 +93,10 @@
             <id>org.jboss.repository.releases</id>
             <name>JBoss Maven Release Repository</name>
             <url>https://repository.jboss.org/nexus/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 

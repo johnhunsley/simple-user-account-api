@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * todo - Move this out of this package into the JPA impl where it belongs as it ties this package to the jpa package which is what we are trying to avoid
  *
  * <p>
  *     Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,7 +39,7 @@ public class UserJsonTest {
 
     @Test
     public void testSerialize() throws Exception {
-        final String expected = "{\"@class\":\"User\",\"id\":100,\"username\":\"test\",\"password\":\"UxViU7towYwsi5G3zZlzNS3Gkbg=\",\"email\":\"test@test\",\"firstName\":\"test\",\"lastName\":\"test\",\"active\":true,\"roles\":[{\"authority\":\"TEST_ROLE\"}],\"enabled\":true,\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true}";
+        final String expected = "{\"@class\":\"User\",\"id\":100,\"username\":\"test\",\"password\":\"W6ph5Mm5Pz8GgiULbPgzG37mj9g=\",\"email\":\"test@test\",\"firstName\":\"test\",\"lastName\":\"test\",\"active\":true,\"roles\":[{\"authority\":\"TEST_ROLE\"}],\"enabled\":true,\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true}";
         User user = TestUtils.user();
         System.out.println(tester.write(user).getJson());
         assertThat(tester.write(user)).isEqualToJson(expected);
