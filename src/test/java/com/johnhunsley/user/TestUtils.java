@@ -40,9 +40,25 @@ public class TestUtils {
     public static User user() {
         Hash hash = new Hash(Hash.SHA1_TYPE);
         Role role = new RoleJpaImpl("TEST_ROLE");
-        Account account = new AccountJpaImpl();
-        User user = new UserJpaImpl("test", "test@test", "test", "test", YNEnum.Y, hash.hash("password"));
 
+        Account account = new AccountJpaImpl();
+        //Set the id a-la-jpa style
+        Field accountField = ReflectionUtils.findField(AccountJpaImpl.class, new ReflectionUtils.DescribedFieldFilter() {
+            @Override
+            public String getDescription() {
+                return "id";
+            }
+
+            @Override
+            public boolean matches(Field field) {
+                return field.getName().equals("id");
+            }
+        });
+
+        ReflectionUtils.setField(accountField, account, 100);
+        account.setName("MyAccount");
+
+        User user = new UserJpaImpl("test", "test@test", "test", "test", YNEnum.Y, hash.hash("password"));
         //Set the id a-la-jpa style
         Field field = ReflectionUtils.findField(UserJpaImpl.class, new ReflectionUtils.DescribedFieldFilter() {
             @Override
@@ -58,7 +74,7 @@ public class TestUtils {
 
         ReflectionUtils.setField(field, user, 100L);
         user.addRole(role);
-        user.setAccount(account);
+        user.setAccountId(account.getId());
         return user;
     }
 }

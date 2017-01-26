@@ -39,7 +39,7 @@ public class UserJsonTest {
 
     @Test
     public void testSerialize() throws Exception {
-        final String expected = "{\"class\":\"User\",\"id\":100,\"username\":\"test\",\"password\":\"W6ph5Mm5Pz8GgiULbPgzG37mj9g=\",\"email\":\"test@test\",\"firstName\":\"test\",\"lastName\":\"test\",\"active\":true,\"roles\":[{\"authority\":\"TEST_ROLE\"}],\"enabled\":true,\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true}";
+        final String expected = "{\"class\":\"User\",\"id\":100,\"accountId\":100,\"username\":\"test\",\"password\":\"W6ph5Mm5Pz8GgiULbPgzG37mj9g=\",\"email\":\"test@test\",\"firstName\":\"test\",\"lastName\":\"test\",\"active\":true,\"roles\":[{\"authority\":\"TEST_ROLE\"}],\"enabled\":true,\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true}";
         User user = TestUtils.user();
         System.out.println(tester.write(user).getJson());
         assertThat(tester.write(user)).isEqualToJson(expected);
