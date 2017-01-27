@@ -11,6 +11,8 @@ import com.svlada.security.crypto.password.Hash;
 import org.springframework.data.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * todo - get rid of this into the jpa package
@@ -37,6 +39,10 @@ import java.lang.reflect.Field;
  */
 public class TestUtils {
 
+    /**
+     *
+     * @return
+     */
     public static User user() {
         Hash hash = new Hash(Hash.SHA1_TYPE);
         Role role = new RoleJpaImpl("TEST_ROLE");
@@ -76,5 +82,33 @@ public class TestUtils {
         user.addRole(role);
         user.setAccountId(account.getId());
         return user;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public static Collection<Role> roles() {
+        Collection<Role> roles = new ArrayList<>();
+        Role role = new RoleJpaImpl("TEST_ROLE_1");
+        Role role2 = new RoleJpaImpl("TEST_ROLE_2");
+
+        Field field = ReflectionUtils.findField(RoleJpaImpl.class, new ReflectionUtils.DescribedFieldFilter() {
+            @Override
+            public String getDescription() {
+                return "id";
+            }
+
+            @Override
+            public boolean matches(Field field) {
+                return field.getName().equals("id");
+            }
+        });
+
+        ReflectionUtils.setField(field, role, 1);
+        ReflectionUtils.setField(field, role2, 2);
+        roles.add(role);
+        roles.add(role2);
+        return roles;
     }
 }
