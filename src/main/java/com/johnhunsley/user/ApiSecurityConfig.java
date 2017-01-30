@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -56,6 +57,7 @@ import java.util.List;
 public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String FORM_BASED_LOGIN_ENTRY_POINT = "/auth/login";
     public static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/user/**";
+    public static final String ROLE_ENTRY_POINT = "/role/**";
     public static final String TOKEN_REFRESH_ENTRY_POINT = "/auth/token";
 
     @Autowired private UserDetailsService userDetailsService;
@@ -125,6 +127,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
                 .authorizeRequests()
                 .antMatchers(TOKEN_BASED_AUTH_ENTRY_POINT).authenticated() // Protected API End-points
+                .antMatchers(HttpMethod.PUT, ROLE_ENTRY_POINT).hasRole("ADMIN")
 
         .and()
                 .addFilterBefore(buildAjaxLoginProcessingFilter(), UsernamePasswordAuthenticationFilter.class)
