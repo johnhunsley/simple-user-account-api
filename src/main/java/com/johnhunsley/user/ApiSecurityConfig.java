@@ -124,12 +124,13 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers(FORM_BASED_LOGIN_ENTRY_POINT).permitAll() // Login end-point
         .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll() // Token refresh end-point
 
+        .and() // Protected API End-points
+                .authorizeRequests()
+                .antMatchers(HttpMethod.PUT, TOKEN_BASED_AUTH_ENTRY_POINT).hasAuthority("ADMIN")
         .and()
                 .authorizeRequests()
-                .antMatchers(TOKEN_BASED_AUTH_ENTRY_POINT).authenticated() // Protected API End-points
-                .antMatchers(HttpMethod.PUT, ROLE_ENTRY_POINT).hasRole("ADMIN")
-
-        .and()
+                .antMatchers(HttpMethod.PUT, ROLE_ENTRY_POINT).hasAuthority("ADMIN")
+                .and()
                 .addFilterBefore(buildAjaxLoginProcessingFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(buildJwtTokenAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
 
