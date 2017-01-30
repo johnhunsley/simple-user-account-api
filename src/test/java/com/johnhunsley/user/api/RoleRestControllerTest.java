@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -55,6 +56,13 @@ public class RoleRestControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(expected))
                 .andReturn();
+    }
+
+    @Test
+    public void testSaveRole() throws Exception {
+        final String json = "{\"class\":\"Role\",\"id\":100,\"authority\":\"TEST_ROLE_100\"}";
+        mockMvc.perform(put("/role").content(json).contentType("application/json")).andExpect(status().isOk());
+
     }
 
 }

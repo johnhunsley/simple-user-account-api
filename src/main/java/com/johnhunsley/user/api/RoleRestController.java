@@ -5,10 +5,7 @@ import com.johnhunsley.user.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -43,4 +40,15 @@ public class RoleRestController {
     public ResponseEntity<Collection<? extends Role>> getAllRoles() {
         return new ResponseEntity<>(roleService.getAllRoles(), HttpStatus.OK);
     }
-}
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<Role> getRoleById(@PathVariable(name = "id") final int id) {
+        return new ResponseEntity<>(roleService.getRole(id), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
+    public ResponseEntity saveRole(@RequestBody Role role) {
+        roleService.saveRole(role);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+ }
