@@ -32,7 +32,7 @@
         <dependency>
             <groupId>com.github.johnhunsley</groupId>
             <artifactId>simple-user-account-jpa</artifactId>
-            <version>570b620edf</version>
+            <version>b2b4df3213</version>
         </dependency>
 
         <dependency>
