@@ -69,6 +69,7 @@ public class UserRestController {
     public ResponseEntity<Page<User>> searchAllUsers(@RequestParam(name = "query") final String query,
                                                     @PathVariable(name = "pageSize") final int pageSize,
                                                     @PathVariable(name = "pageNumber") final int pageNumber) {
+        System.out.println("hello");
         return new ResponseEntity<>(userDetailsService.searchAllUsers(query, pageSize, pageNumber), HttpStatus.OK);
     }
 }
