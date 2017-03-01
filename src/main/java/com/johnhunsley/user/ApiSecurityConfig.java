@@ -126,7 +126,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 
         .and() // Protected API End-points
                 .authorizeRequests()
-                .antMatchers(HttpMethod.PUT, TOKEN_BASED_AUTH_ENTRY_POINT).hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT, TOKEN_BASED_AUTH_ENTRY_POINT).hasAuthority("SUPER_ADMIN")
         .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.PUT, ROLE_ENTRY_POINT).hasAuthority("ADMIN")
